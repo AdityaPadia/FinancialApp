@@ -12,16 +12,18 @@ import {
   Image
 } from 'react-native';
 
-const WatchlistHorizontalComponent: () => Node = () => {
+import StockPlotComponent from './StockPlotComponent';
+
+const WatchlistHorizontalComponent: () => Node = (props) => {
     return (
         <View style = {styles.container}>
             <View style = {styles.nameContainer}>
                 <Text style = {styles.stockName}>
-                    NIFTY
+                    {props.name}
                 </Text>
             </View>
             <View style = {styles.trendContainer}>
-
+                <StockPlotComponent data = {props.data}/>
             </View>
             <View style = {styles.priceContainer}>
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import type {Node} from 'react';
 import {
   SafeAreaView,
@@ -12,15 +12,56 @@ import {
   Image
 } from 'react-native';
 
+import axios from 'axios';
+import constants from '../../constants';
+
 import WatchlistHorizontalComponent from '../components/WatchlistHorizontalComponent';
 
 import { useNavigation } from '@react-navigation/native';
-import SearchScreen from './SearchScreen';
+
+
 
 const DashboardScreen: () => Node = () => {
-
+    const [data, setData] = useState(null);
+    var timeData = [];
     const navigation = useNavigation();
 
+    useEffect(() => {
+        const fetchData = async () => {
+            try
+            {
+                const baseURL = constants.alpha_vantage_api_intraday;
+                const apiKey = constants.alpha_vantage_api_key;
+
+                const fullURL = baseURL + apiKey;
+                const data = await fetch(fullURL);
+                const json = await data.json();
+                setData(json)
+            }
+            catch(error)
+            {
+                console.log(error);
+            }
+            
+        }
+
+        if (data == null)
+        {
+            fetchData();
+        }
+    })
+
+    if (data != null)
+    {
+        var timeTempData = [];
+        for (const key in data["Time Series (5min)"])
+        {
+            timeTempData.push(data["Time Series (5min)"][key]["4. close"]);
+        }
+        timeData = timeTempData;
+        console.log(timeData);
+    }
+    
     return (
         <SafeAreaView style = {styles.container}>
             <View style = {styles.dashboardTopContainer}>
@@ -40,9 +81,9 @@ const DashboardScreen: () => Node = () => {
                     Your Watchlist
                 </Text>
                 <ScrollView style = {styles.scrollContainer}>
-                    <WatchlistHorizontalComponent />
-                    <WatchlistHorizontalComponent />
-                    <WatchlistHorizontalComponent />
+                    <WatchlistHorizontalComponent name = "IBM" data = {timeData}/>
+                    <WatchlistHorizontalComponent name = "IBM"/>
+                    <WatchlistHorizontalComponent name = "IBM"/>
                 </ScrollView>
             </View>
         </SafeAreaView>
