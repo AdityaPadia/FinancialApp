@@ -36,9 +36,9 @@ const PortfolioScreen: () => Node = () => {
                     Your Holdings
                 </Text>
                 <ScrollView style = {styles.scrollContainer}>
-                    <WatchlistHorizontalComponent />
-                    <WatchlistHorizontalComponent />
-                    <WatchlistHorizontalComponent />
+                    <WatchlistHorizontalComponent name = "IBM"/>
+                    <WatchlistHorizontalComponent name = "GOOGL"/>
+                    <WatchlistHorizontalComponent name = "META"/>
                 </ScrollView>
             </View>
         </SafeAreaView>

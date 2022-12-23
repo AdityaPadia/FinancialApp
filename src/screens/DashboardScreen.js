@@ -22,47 +22,6 @@ import { useNavigation } from '@react-navigation/native';
 
 
 const DashboardScreen: () => Node = () => {
-    const [data, setData] = useState(null);
-    const [timeIntervalData, setTimeIntervalData] = useState([]);
-    var timeData = [];
-
-    const navigation = useNavigation();
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try
-            {
-                const baseURL = constants.alpha_vantage_api_intraday;
-                const apiKey = constants.alpha_vantage_api_key;
-
-                const fullURL = baseURL + apiKey;
-                const data = await fetch(fullURL);
-                const json = await data.json();
-                setData(json)
-            }
-            catch(error)
-            {
-                console.log(error);
-            }
-            
-        }
-
-        if (data == null)
-        {
-            fetchData();
-        }
-    })
-
-    if (data != null)
-    {
-        var timeTempData = [];
-        for (const key in data["Time Series (5min)"])
-        {
-            timeTempData.push(parseFloat(data["Time Series (5min)"][key]["4. close"]));
-        }
-        timeData = timeTempData;
-
-    }
     
     return (
         <SafeAreaView style = {styles.container}>
@@ -83,9 +42,9 @@ const DashboardScreen: () => Node = () => {
                     Your Watchlist
                 </Text>
                 <ScrollView style = {styles.scrollContainer}>
-                    <WatchlistHorizontalComponent name = "IBM" data = {timeData}/>
-                    <WatchlistHorizontalComponent name = "IBM" data = {timeData}/>
-                    <WatchlistHorizontalComponent name = "IBM" data = {timeData}/>
+                    <WatchlistHorizontalComponent name = "IBM"/>
+                    <WatchlistHorizontalComponent name = "GOOGL"/>
+                    <WatchlistHorizontalComponent name = "META"/>
                 </ScrollView>
             </View>
         </SafeAreaView>
