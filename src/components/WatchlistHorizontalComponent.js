@@ -26,7 +26,9 @@ const WatchlistHorizontalComponent: () => Node = (props) => {
                 <StockPlotComponent data = {props.data}/>
             </View>
             <View style = {styles.priceContainer}>
-
+                <Text style = {{paddingLeft : 5, fontWeight : "bold"}}>
+                    {props.data[props.data.length - 1]}
+                </Text>
             </View>
         </View>
     )
@@ -50,13 +52,13 @@ const styles = StyleSheet.create({
         justifyContent : "center",
     },
     trendContainer : {
-        flex : 0.5,
+        flex : 0.55,
         flexDirection : "column",
         alignContent : "center",
         justifyContent : "center",
     },
     priceContainer : {
-        flex : 0.25,
+        flex : 0.2,
         flexDirection : "column",
         alignContent : "center",
         justifyContent : "center",

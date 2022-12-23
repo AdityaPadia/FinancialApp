@@ -23,7 +23,9 @@ import { useNavigation } from '@react-navigation/native';
 
 const DashboardScreen: () => Node = () => {
     const [data, setData] = useState(null);
+    const [timeIntervalData, setTimeIntervalData] = useState([]);
     var timeData = [];
+
     const navigation = useNavigation();
 
     useEffect(() => {
@@ -56,10 +58,10 @@ const DashboardScreen: () => Node = () => {
         var timeTempData = [];
         for (const key in data["Time Series (5min)"])
         {
-            timeTempData.push(data["Time Series (5min)"][key]["4. close"]);
+            timeTempData.push(parseFloat(data["Time Series (5min)"][key]["4. close"]));
         }
         timeData = timeTempData;
-        console.log(timeData);
+
     }
     
     return (
@@ -82,8 +84,8 @@ const DashboardScreen: () => Node = () => {
                 </Text>
                 <ScrollView style = {styles.scrollContainer}>
                     <WatchlistHorizontalComponent name = "IBM" data = {timeData}/>
-                    <WatchlistHorizontalComponent name = "IBM"/>
-                    <WatchlistHorizontalComponent name = "IBM"/>
+                    <WatchlistHorizontalComponent name = "IBM" data = {timeData}/>
+                    <WatchlistHorizontalComponent name = "IBM" data = {timeData}/>
                 </ScrollView>
             </View>
         </SafeAreaView>
