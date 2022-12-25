@@ -22,6 +22,8 @@ import { useNavigation } from '@react-navigation/native';
 
 
 const DashboardScreen: () => Node = () => {
+
+    const navigation = useNavigation();
     
     return (
         <SafeAreaView style = {styles.container}>
@@ -42,9 +44,15 @@ const DashboardScreen: () => Node = () => {
                     Your Watchlist
                 </Text>
                 <ScrollView style = {styles.scrollContainer}>
-                    <WatchlistHorizontalComponent name = "IBM"/>
-                    <WatchlistHorizontalComponent name = "GOOGL"/>
-                    <WatchlistHorizontalComponent name = "META"/>
+                    <WatchlistHorizontalComponent name = "IBM" onPress = {() => {navigation.navigate("News", {
+                        name : "IBM"
+                    })}}/>
+                    <WatchlistHorizontalComponent name = "GOOGL" onPress = {() => {navigation.navigate("News", {
+                        name : "GOOGL"
+                    })}}/>
+                    <WatchlistHorizontalComponent name = "META" onPress = {() => {navigation.navigate("News", {
+                        name : "META"
+                    })}}/>
                 </ScrollView>
             </View>
         </SafeAreaView>

@@ -58,7 +58,7 @@ const WatchlistHorizontalComponent: () => Node = (props) => {
     }
 
     return (
-        <View style = {styles.container}>
+        <TouchableOpacity style = {styles.container} onPress = {props.onPress}>
             <View style = {styles.nameContainer}>
                 <Text style = {styles.stockName}>
                     {props.name}
@@ -72,13 +72,12 @@ const WatchlistHorizontalComponent: () => Node = (props) => {
                     {timeData[timeData.length - 1]}
                 </Text>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 
 const styles = StyleSheet.create({
     container : {
-        borderWidth : 1,
         width : "95%",
         height : 70,
         alignSelf : "center",

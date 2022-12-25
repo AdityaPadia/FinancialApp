@@ -34,6 +34,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import DashboardScreen from './src/screens/DashboardScreen';
 import SearchScreen from './src/screens/SearchScreen';
 import PortfolioScreen from './src/screens/PortfoliioScreen';
+import NewsScreen from './src/screens/NewsScreen';
+import WebviewScreen from './src/screens/WebviewScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
@@ -44,6 +46,8 @@ const MyStack = () => {
       <Stack.Navigator>
         <Stack.Screen name = "Dashboard" component = {DashboardScreen} options = {{headerShown : false}}/>
         <Stack.Screen name = "Search" component = {SearchScreen}/>
+        <Stack.Screen name = "News" component={NewsScreen} /> 
+        <Stack.Screen name = "Browser" component={WebviewScreen} />
       </Stack.Navigator>
   )
 }
