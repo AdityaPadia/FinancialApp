@@ -18,11 +18,14 @@ import HoldingsHorizontalComponent from '../components/HoldingsHorizontalCompone
 const PortfolioScreen: () => Node = () => {
 
     const sharesData = [10, 15, 30, 5];
-    const [currentValue, setCurrentValue] = useState(0);
+    var currentValue = 0;
+    const [curValue, setCurValue] = useState(0);
     const [todaysPNL, setTodaysPNL] = useState(0);
 
-    const setPriceParent = () => {
-
+    const getData = (childData) => {
+        currentValue += childData;
+        console.log(currentValue);
+        console.log(childData);
     }
 
     return(
@@ -31,7 +34,7 @@ const PortfolioScreen: () => Node = () => {
                 <View style = {styles.portfolioSummary}>
                     <View style = {styles.valueContainer}>
                         <Text style = {styles.headingText}>
-                            Current Value
+                            Current Value {curValue}
                         </Text>
                     </View>
                     <View style = {styles.valueContainer}>
@@ -46,10 +49,10 @@ const PortfolioScreen: () => Node = () => {
                     Your Holdings
                 </Text>
                 <ScrollView style = {styles.scrollContainer}>
-                    <HoldingsHorizontalComponent name = "IBM" shares = {sharesData[0]} setPrice = {this.setPriceParent}/>
-                    <HoldingsHorizontalComponent name = "META" shares = {sharesData[1]} />
-                    <HoldingsHorizontalComponent name = "GOOGL" shares = {sharesData[2]}/>
-                    <HoldingsHorizontalComponent name = "NFLX" shares = {sharesData[3]}/>
+                    <HoldingsHorizontalComponent name = "IBM" shares = {sharesData[0]} setValue = {getData}/>
+                    <HoldingsHorizontalComponent name = "META" shares = {sharesData[1]} setValue = {getData}/>
+                    <HoldingsHorizontalComponent name = "GOOGL" shares = {sharesData[2]} setValue = {getData}/>
+                    <HoldingsHorizontalComponent name = "NFLX" shares = {sharesData[3]} setValue = {getData}/>
                 </ScrollView>
             </View>
         </SafeAreaView>

@@ -20,6 +20,10 @@ const HoldingsHorizontalComponent: () => Node = (props) => {
     const [timeIntervalData, setTimeIntervalData] = useState([]);
     var timeData = [];
 
+    sendData = () => {
+        this.props.setValue(1);
+    }
+
     useEffect(() => {
         const fetchData = async () => {
             try
@@ -32,7 +36,6 @@ const HoldingsHorizontalComponent: () => Node = (props) => {
                 const data = await fetch(fullURL);
                 const json = await data.json();
                 setData(json)
-                this.props.setPrice()
             }
             catch(error)
             {
@@ -55,6 +58,8 @@ const HoldingsHorizontalComponent: () => Node = (props) => {
             timeTempData.push(parseFloat(data["Time Series (5min)"][key]["4. close"]));
         }
         timeData = timeTempData;
+
+        props.setValue(timeData[timeData.length - 1] * props.shares);
 
     }
 
