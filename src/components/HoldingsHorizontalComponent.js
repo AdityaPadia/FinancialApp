@@ -36,6 +36,7 @@ const HoldingsHorizontalComponent: () => Node = (props) => {
                 const data = await fetch(fullURL);
                 const json = await data.json();
                 setData(json)
+
             }
             catch(error)
             {
