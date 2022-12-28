@@ -18,7 +18,7 @@ import { useNavigation } from '@react-navigation/native';
 
 const PortfolioScreen: () => Node = () => {
 
-    const sharesData = [10, 15, 30, 5];
+    const sharesData = [10, 15, 30, 5]; //Number of shares the user is holding
     var currentValue = 0;
     const [curValue, setCurValue] = useState(0);
     const [todaysPNL, setTodaysPNL] = useState(0);
