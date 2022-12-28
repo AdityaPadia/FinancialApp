@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import type {Node} from 'react';
 import {
   SafeAreaView,
@@ -13,8 +13,18 @@ import {
 } from 'react-native';
 
 import WatchlistHorizontalComponent from '../components/WatchlistHorizontalComponent';
+import HoldingsHorizontalComponent from '../components/HoldingsHorizontalComponent';
 
 const PortfolioScreen: () => Node = () => {
+
+    const sharesData = [10, 15, 30, 5];
+    const [currentValue, setCurrentValue] = useState(0);
+    const [todaysPNL, setTodaysPNL] = useState(0);
+
+    const setPriceParent = () => {
+
+    }
+
     return(
         <SafeAreaView style = {styles.container}>
             <View style = {styles.portfolioSummaryContainer}>
@@ -36,9 +46,10 @@ const PortfolioScreen: () => Node = () => {
                     Your Holdings
                 </Text>
                 <ScrollView style = {styles.scrollContainer}>
-                    <WatchlistHorizontalComponent name = "IBM"/>
-                    <WatchlistHorizontalComponent name = "GOOGL"/>
-                    <WatchlistHorizontalComponent name = "META"/>
+                    <HoldingsHorizontalComponent name = "IBM" shares = {sharesData[0]} setPrice = {this.setPriceParent}/>
+                    <HoldingsHorizontalComponent name = "META" shares = {sharesData[1]} />
+                    <HoldingsHorizontalComponent name = "GOOGL" shares = {sharesData[2]}/>
+                    <HoldingsHorizontalComponent name = "NFLX" shares = {sharesData[3]}/>
                 </ScrollView>
             </View>
         </SafeAreaView>

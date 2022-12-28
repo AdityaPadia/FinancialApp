@@ -20,6 +20,8 @@ const NewsScreen: () => Node = (props) => {
     const navigation = useNavigation();
 
     const [data, setData] = useState(null);
+
+    var dataLength = 0;
     var newsTempData = [];
     var newsTempTitleData = [];
     var newsTempAuthorData = [];
@@ -55,7 +57,10 @@ const NewsScreen: () => Node = (props) => {
 
     if (data != null)
     {
-
+        if (data.feed.length != 0)
+        {
+            dataLength = 1;
+        }
         for (var i = 0; i < data.feed.length; i++)
         {
             newsTempData.push(data.feed[i]);
@@ -85,6 +90,9 @@ const NewsScreen: () => Node = (props) => {
         //     />
         // </SafeAreaView>
         <SafeAreaView style = {styles.container}>
+            {
+            (dataLength != 0) 
+            ? 
             <ScrollView style = {styles.scrollContainer}>
                 <NewsComponent name = {newsTempTitleData[0]} imageURL = {newsTempImageURLData[0]} summary = {newsTempSummaryData[0]} onPress={() => navigation.navigate("Browser", {uri : newsTempURLData[0]})} />
                 <NewsComponent name = {newsTempTitleData[1]} imageURL = {newsTempImageURLData[1]} summary = {newsTempSummaryData[1]} onPress={() => navigation.navigate("Browser", {uri : newsTempURLData[1]})} />
@@ -92,6 +100,13 @@ const NewsScreen: () => Node = (props) => {
                 <NewsComponent name = {newsTempTitleData[3]} imageURL = {newsTempImageURLData[3]} summary = {newsTempSummaryData[3]} onPress={() => navigation.navigate("Browser", {uri : newsTempURLData[3]})} />
                 <NewsComponent name = {newsTempTitleData[4]} imageURL = {newsTempImageURLData[4]} summary = {newsTempSummaryData[4]} onPress={() => navigation.navigate("Browser", {uri : newsTempURLData[4]})} />
             </ScrollView>
+            :
+                <View>
+                    <Text>
+                        Sorry! No News Available
+                    </Text>
+                </View>
+            }
         </SafeAreaView>
     )
 }
