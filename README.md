@@ -1,7 +1,5 @@
 # About
-The app is a financial app. Guidelines provided by the Synpulse hiring team.
-Please find link to challenge below
-https://challenges.synpulse8.com/front-end-engineer/
+Financial App to monitor stock prices and stock news built on React Native with Alpha Vantage APIs
 
 # API Configuration
 Go to https://www.alphavantage.co/ to generate a free API key
